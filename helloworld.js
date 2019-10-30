@@ -1,5 +1,7 @@
 const canvas=document.getElementById("glcanvas");
 
+
+
 const loadShader = (gl, type, source)=>
 {
   const shader=gl.createShader(type);
@@ -20,8 +22,9 @@ return shader;
 
 //para inicializar el shader
 const initShader = (gl,vsSource, fsSource)=>{
-//cargar shaders
-
+//cargar shaders, aqui se compilan ambos, y se llama dos veces, una para fragment y una para verter
+const vertexShader=loadShader(gl, gl.VERTEX_SHADER, vsSource);
+const fragmentShader=loadShader(gl,gl.FRAGMENT_SHADER,fsSource);
 
 }
 
