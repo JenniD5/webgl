@@ -1,4 +1,4 @@
-const canvas=document.getElementById("glcanvas");
+/*const canvas=document.getElementById("glcanvas");
 
 
 
@@ -40,6 +40,7 @@ gl.linkProgram(shaderProgram); //para ligar el program al contexto que es gl, li
   alert('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shaderProgram));
   return null;
  }
+ return shaderProgram;
 }
 
 
@@ -68,6 +69,52 @@ position: positionBuffer//devuelve las posiciones
  
 }
 
+const drawScene= (gl, programInfo, buffers)=>
+{ //render
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
+  gl.clearDepth(1.0);                 // Clear everything eso significa el 1
+  gl.enable(gl.DEPTH_TEST);           // Enable depth testing
+  gl.depthFunc(gl.LEQUAL);            // Near things obscure far things
+
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); //solo se le puede dar orden no modificar
+  //camara
+  //campo de vision con cons 
+  const fieldOfView = 45 * Math.PI / 180;  //tiene que ser a radianes 
+  const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+  const zNear = 0.1; //desde donde se empieza a ver 
+  const zFar = 100.0;// y donde se terman de ver 
+  const projectionMatrix = mat4.create();  //una matriz nueva vacio, y se lena con la perpectiva de la camara
+  //llamar a una funcion estatica
+  mat4.perspective(projectionMatrix,//recibe la matriz de 4
+    fieldOfView,//como debe de posiconarse 
+    aspect,
+    zNear,
+    zFar);
+  };
+  const modelViewMatrix = mat4.create();
+
+  mat4.translate(modelViewMatrix,     // destination matrix
+    modelViewMatrix,     // matrix to translate
+    [-0.0, 0.0, -6.0]);
+    {
+      //make quad
+
+      const numComponents = 2;  // pull out 2 values per iteration
+      const type = gl.FLOAT;    // the data in the buffer is 32bit floats
+      const normalize = false;  // don't normalize
+      const stride = 0;         // how many bytes to get from one set of values to the next
+      const offset = 0;         // how many bytes inside the buffer to start from
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
+    gl.vertexAttribPointer(
+        programInfo.attribLocations.vertexPosition,
+        numComponents,
+        type,
+        normalize,
+        stride,
+        offset);  
+    }
+
+}
 
 
 
@@ -101,14 +148,8 @@ const programInfo={
   //dos puntos para almacenar la caracteristica
 };
 const buffers=initialBuffer(gl);
+drawScene (gl, programInfo, buffers);
 
-
-
-
-
-
-gl.clearColor(0,0,0,1);//el color con el que va estar limpiando
-gl.clear(gl.COLOR_BUFFER_BIT);
 }
 
 window.onload=main;
@@ -133,7 +174,7 @@ const fsSource = `
     void main() {
       gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
     }
-  `;
+  `;*/
 
 
   
