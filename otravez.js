@@ -187,8 +187,8 @@ function initShaderProgram(gl, vsSource, fsSource) {
   
     {
       const offset = 0;
-      const vertexCount = 4;
-      gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
+      const vertexCount = 4;//numero de vertices
+      gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);//operacion minima que puede hacer 
     }
   }
   
